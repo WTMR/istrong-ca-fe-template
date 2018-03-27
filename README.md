@@ -17,7 +17,7 @@
 
 ```
 npm i -g vue-cli
-vue init WTMR/cloudapp-fe-template project-name
+vue init WTMR/istrong-ca-fe-template project-name
 ```
 project-name 为你的组件名称。
 
