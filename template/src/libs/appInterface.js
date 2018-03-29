@@ -16,7 +16,12 @@ export default {
     },
     allowGenerateRoutes(val) {
       if (val) {
-        this.generateRoutes();
+        this.generateRoutes().then(routerConfig => {
+          this.$store.dispatch('routers/generateRoutes', {
+            router: this.$router,
+            pages: routerConfig
+          });
+        });
       }
     }
   },
@@ -59,7 +64,12 @@ export default {
   created() {
     this.modules = this.$store.state.routers.modules;
     if (this.allowGenerateRoutes) {
-      this.generateRoutes();
+      this.generateRoutes().then(routerConfig => {
+        this.$store.dispatch('routers/generateRoutes', {
+          router: this.$router,
+          pages: routerConfig
+        });
+      });
     }
   },
   methods: {

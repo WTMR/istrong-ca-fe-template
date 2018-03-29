@@ -102,14 +102,11 @@ export default {
   },
   methods: {
     /**@augments 需要实现的路由信息获取并注册功能 */
-    generateRoutes() {
+    async generateRoutes() {
       //下面代码是动态路由注册的代码
       const pages = this.$store.getters['config/app']('pages');
-      //通过路由配置生成动态路由
-      this.$store.dispatch('routers/generateRoutes', {
-        router: this.$router,
-        pages
-      });
+      //返回路由配置
+      return pages;
     }
   }
 };
