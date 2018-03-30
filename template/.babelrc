@@ -16,6 +16,17 @@
     "stage-2"
   ],
   "plugins": [
+    {{#if_eq uiLibrary "mint-ui"}}
+    [
+      "component",
+      [
+        {
+          "libraryName": "mint-ui",
+          "style": true
+        }
+      ]
+    ],
+    {{/if_eq}}
     "transform-vue-jsx",
     "transform-runtime"
   ],

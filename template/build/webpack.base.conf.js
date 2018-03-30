@@ -5,6 +5,11 @@ const webpack = require('webpack')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 
+
+{{#if_eq uiLibrary 'vux'}}
+const vuxLoader = require('vux-loader');
+{{/if_eq}}
+
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const os = require('os')
 const HappyPack = require('happypack')//通过多进程模型，来加速代码构建
@@ -15,7 +20,7 @@ function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
-module.exports = {
+let webpackConfig = {
   context: path.resolve(__dirname, '../'),
   entry: {
     app: './src/main.js'
@@ -113,3 +118,13 @@ module.exports = {
     child_process: 'empty'
   }
 }
+
+
+{{#if_eq uiLibrary 'vux'}}
+module.exports = vuxLoader.merge(webpackConfig, {
+  plugins: ['vux-ui', 'progress-bar', 'duplicate-style']
+});
+{{/if_eq}}
+{{#unless_eq uiLibrary 'vux'}}
+module.exports = webpackConfig;
+{{/unless_eq}}

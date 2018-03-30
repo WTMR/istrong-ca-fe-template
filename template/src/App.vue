@@ -112,6 +112,11 @@ export default {
 };
 </script>
 
+{{#if_eq uiLibrary 'vux'}}
+<style lang="less">
+@import '~vux/src/styles/reset.less';
+</style>
+{{/if_eq}}
 <style scoped>
 #app > div {
   width: 100%;

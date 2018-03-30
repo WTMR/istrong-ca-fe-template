@@ -54,6 +54,23 @@ module.exports = {
       type: 'string',
       message: '作者'
     },
+    uiLibrary: {
+      type: "list",
+      message: "请选择组件库（建议使用Vux）",
+      default: 0,
+      choices: [{
+        "name": "Vux",
+        "value": "vux",
+        "short": "活跃度高"
+      }, {
+        "name": "mint-ui",
+        "value": "mint-ui",
+        "short": "饿了么前端团队"
+      }, {
+        "name": "都不使用",
+        "value": "none"
+      }]
+    },
     lint: {
       type: 'confirm',
       message: '是否使用ESLint规范您的代码?'
