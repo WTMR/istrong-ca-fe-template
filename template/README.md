@@ -14,7 +14,7 @@ npm run dev
 # build for production with minification
 npm run build
 
-# build for production and view the bundle analyzer report
+# 分析打包的js内容
 npm run build --report
 
 # run unit tests

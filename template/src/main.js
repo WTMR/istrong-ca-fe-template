@@ -1,13 +1,16 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-var Promise = require('es6-promise').Promise;
-window.Promise = Promise;//这里是为了兼容安卓4.4以下的promise问题。
+import 'babel-polyfill';//polyfill一定要在最前
+import Es6Promise from 'es6-promise';
 
 import './styles/app.css';
 
 import Vue from 'vue'
 import App from './App'
-import router, { routeAuthentication } from '@/router'//注册路由配置
+
+
+import router {{#authentication}} , { routeAuthentication }  {{/authentication}} from '@/router'//注册路由配置
+
 import store from '@/store' //全局状态管理器
 import api from 'istrong-common-model';
 
@@ -18,12 +21,13 @@ FastClick.attach(document.body);
 
 Vue.use(api, {
   apiConfig: {
+    // host: 'https://jsyapi.istrongcloud.com/api',//api的host
     api: './config/api.json',
     commonModel: './config/interface_common_model.json'
   }
 });
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 new Vue({
@@ -33,17 +37,13 @@ new Vue({
   template: '<App/>',
   components: { App },
   beforeCreate() {
+    {{#authentication}}
+    routeAuthentication(this);//用于用户登录鉴权注册，需要实现pages/login.vue(如果是import另外的login，需要在store/components中指定)
+    {{/authentication}}
     this.$api.get({ url: './config/app.json', cache: true }).then(config => {
       this.$store.commit('config/pushAppConfig', config || {});//配置信息初始化到config中
-      routeAuthentication(this);
     });
   },
   methods: {
-    identityCheck() {
-      return new Promise((resolve, reject) => {
-        this.$store.commit('global/setUserInfo', { username: '158590******' });
-        resolve()
-      });
-    }
   }
 })

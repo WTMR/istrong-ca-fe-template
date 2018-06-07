@@ -38,7 +38,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     new UglifyJsPlugin({
       uglifyOptions: {
         ie8: false,
-        ecma: 8,
+        // ecma: 8,
         mangle: true,
         output: { comments: false },
         compress: { warnings: false }

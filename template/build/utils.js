@@ -46,7 +46,8 @@ exports.cssLoaders = function (options) {
     // (which is the case during production build)
     if (options.extract) {
       return ExtractTextPlugin.extract({
-        use: loaders,
+        use: loaders, 
+        publicPath: '../../',         // 注意配置这一部分，根据目录结构自由调整——这是为了css中文件路径引用的问题处理
         fallback: 'vue-style-loader'
       })
     } else {

@@ -16,6 +16,7 @@
     "build:dll": "webpack --config ./build/webpack.dll.conf.js"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "es6-promise": "^4.1.1",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
@@ -28,14 +29,8 @@
     {{#if_eq uiLibrary "mint-ui"}}
     "mint-ui": "^2.2.13",
     {{/if_eq}}
-    "vue-ydui":"^1.2.0",
     "istrong-fonticon": "^0.2.0",
     "istrong-common-model": "^0.4.0",
-    "@strongsoft/lazycomponent": "^0.1.0",
-    "@strongsoft/ca-card-v-iframe": "^0.1.0",
-    "@strongsoft/ca-card-interface": "^0.1.0",
-    "@strongsoft/ca-cardpage-interface": "^0.1.0",
-    "@strongsoft/ca-cardpage-storeplugin": "^0.1.0",
     "@strongsoft/ca-framework-vuex": "^0.1.0"
   },
   "devDependencies": {
@@ -62,8 +57,11 @@
     {{/if_eq}}
     "babel-plugin-transform-vue-jsx": "^3.5.0",
     "babel-preset-env": "^1.3.2",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-stage-0": "^6.16.0",
     "babel-preset-stage-2": "^6.22.0",
     "babel-preset-stage-3": "^6.24.1",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "chalk": "^2.0.1",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
